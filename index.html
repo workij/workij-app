@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Workij</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+  background-image: url('https://www.w3schools.com/w3images/forestbridge.jpg');
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+.container {
+    color: #000;
+    margin: 5rem auto;
+    text-align: center;
+	align-items: center;
+}
+
+li {
+    display: inline-block;
+    font-size: 1.5em;
+    list-style: none;
+    padding: 1em;
+    text-transform: uppercase;
+}
+
+li span {
+  display: block;
+  font-size: 4.5rem;
+}
+</style>
+</head>
+<body>
+
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+  <div class="w3-display-topleft w3-padding-large w3-xlarge">
+    Workik
+  </div>
+  <div class="w3-display-middle">
+    <h1 class="w3-jumbo w3-animate-top w3-center" id="container">COMING SOON</h1>
+    <hr class="w3-border-grey" style="margin:auto;width:40%">
+	<div id="countdown" class="w3-center">
+        <ul>
+          <li><span class="days"></span>days</li>
+          <li><span class="hours"></span>Hours</li>
+          <li><span class="minutes"></span>Minutes</li>
+          <li><span class="seconds"></span>Seconds</li>
+        </ul>
+    </div>
+  </div>
+</div>
+
+<script charset="utf-8">
+	  // Get html elements
+    let day = document.querySelector('.days');
+    let hour = document.querySelector('.hours');
+    let minute = document.querySelector('.minutes');
+    let second = document.querySelector('.seconds');
+
+function setCountdown() {
+
+    // Set countdown date
+    let countdownDate = new Date('Sep 06, 2023 00:00:00').getTime();
+
+    // Update countdown every second
+    let updateCount = setInterval(function(){
+
+        // Get today's date and time
+        let todayDate = new Date().getTime();
+
+        // Get distance between now and countdown date
+        let distance = countdownDate - todayDate;
+
+        let days = Math.floor(distance / (1000 * 60 * 60 *24));
+
+        let hours = Math.floor(distance % (1000 * 60 * 60 *24) / (1000 * 60 *60));
+
+        let minutes = Math.floor(distance % (1000 * 60 * 60 ) / (1000 * 60));
+
+        let seconds = Math.floor(distance % (1000 * 60) / 1000);
+
+        // Display values in html elements
+        day.textContent = days;
+        hour.textContent = hours;
+        minute.textContent = minutes;
+        second.textContent = seconds;
+
+        // if countdown expires
+        if(distance < 0){
+            clearInterval(updateCount);
+            document.querySelector(".container").innerHTML = '<h1>Website Update in Progress</h1>'
+        }
+    }, 1000)
+}
+
+setCountdown()
+</script>
+
+</body>
+</html>
+
